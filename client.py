@@ -2,6 +2,7 @@ import requests
 import sys
 
 
+
 response = requests.get("http://localhost:5000/")
 
 print("Received:", response.text)
