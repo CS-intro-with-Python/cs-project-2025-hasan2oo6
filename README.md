@@ -3,7 +3,7 @@
 
 ## Description
 
-Describe the project in 2-3 sentences (You can use more). 
+This project is a Python tool that automatically generates a custom Codeforces-style contest for any group of users. It collects each participant’s solved problems using the Codeforces API, filters out tasks they have already completed, and then selects new unsolved problems based on chosen tags and rating ranges. The program ensures all selected tasks are fresh, relevant, and personalized to the users’ skill levels, making it useful for practice groups, teams, and competitive programming training.
 
 ## Setup
 
@@ -36,3 +36,4 @@ Describe the criteria by which the success of the project can be determined
 
 * Criteria 1
 
+https://cs-project-2025-hasan2oo6-production.up.railway.app/
