@@ -1,0 +1,27 @@
+name: Test Flask server
+
+on: 
+  push:
+  pull_request:
+
+jobs:
+  test-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t my_server .
+
+      - name: Run server in Docker
+        run: |
+          docker run -d -p 5000:5000 --name test_container my_server
+          sleep 5   # wait for server to start
+
+      - name: Install requests (client dependency)
+        run: pip install requests
+
+      - name: Run client script
+        run: python3 client.py
