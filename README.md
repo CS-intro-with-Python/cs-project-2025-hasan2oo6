@@ -21,9 +21,17 @@ Describe technologies, libraries, languages you are using (this can be updated i
 ## Features
 
 Describe the main features the application performs.
+Filters out previously solved tasks and selects only unsolved ones.
 
-* Feature 1
-* Feature 2
+Allows choosing problem tags (e.g., dp, graphs, math) for targeted practice.
+
+Supports rating-range filtering (e.g., 1200–1700).
+
+Randomly generates a contest of any desired size (e.g., 5–10 problems).
+
+Produces direct links to all selected Codeforces problems.
+
+Works for one user or multiple users (team practice).
 
 ## Git
 
