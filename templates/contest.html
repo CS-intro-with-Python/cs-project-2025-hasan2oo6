@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Contest #{{contest.id}}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 10px; margin: 10px 0; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 6px; text-align: center; }
+    th { background: #f5f5f5; }
+    .small { color: #555; font-size: 14px; }
+    .running { color: green; font-weight: bold; }
+    .finished { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Contest #{{contest.id}}</h2>
+
+  <div class="card">
+    <div><b>Participants:</b> {{ ", ".join(contest.handles) }}</div>
+    <div><b>Duration:</b> {{ contest.duration_minutes }} minutes</div>
+    <div><b>Start time:</b> {{ contest.start_time_fmt if contest.start_time else "Not started" }}</div>
+
+    {% if contest.start_time %}
+      <div><b>End time:</b> {{ contest.end_time_fmt }}</div>
+      {% if finished %}
+        <div class="finished">Contest finished</div>
+      {% else %}
+        <div class="running">Contest running</div>
+      {% endif %}
+    {% endif %}
+
+    {% if not contest.start_time %}
+      <form action="/contest/{{contest.id}}/start" method="post" style="margin-top:10px;">
+        <button type="submit">Start contest</button>
+      </form>
+    {% else %}
+      <div class="small">Refresh to update standings.</div>
+    {% endif %}
+  </div>
+
+  <h3>Problems</h3>
+  <div class="card">
+    <ol>
+      {% for p in contest.problems %}
+        <li style="margin: 8px 0;">
+          <a href="https://codeforces.com/problemset/problem/{{p.contestId}}/{{p.index}}" target="_blank">
+            {{p.contestId}}{{p.index}} — {{p.name}}
+          </a>
+          <span class="small">
+            {% if p.rating %} ({{p.rating}}){% endif %}
+            {% if p.tags %} — tags: {{ ", ".join(p.tags) }}{% endif %}
+          </span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <h3>Standings</h3>
+  {% if standings %}
+    <div class="card">
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Handle</th>
+          <th>Solved</th>
+          <th>Penalty</th>
+          {% for p in contest.problems %}<th>{{loop.index}}</th>{% endfor %}
+        </tr>
+        {% for row in standings %}
+          <tr>
+            <td>{{loop.index}}</td>
+            <td>{{row.handle}}</td>
+            <td>{{row.solved}}</td>
+            <td>{{row.penalty}}</td>
+            {% for pp in row.problems %}
+              <td>
+                {% if pp.solved %}
+                  +{{pp.wrong}}<br/>{{pp.time}}m
+                {% else %}
+                  {% if pp.wrong > 0 %}-{{pp.wrong}}{% else %}.{% endif %}
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+      <div class="small" style="margin-top:8px;">Solved cell: +wrong and time. Unsolved: -wrong or dot.</div>
+    </div>
+  {% else %}
+    <div class="card small">Not started yet.</div>
+  {% endif %}
+
+  <div style="margin-top:20px;">
+    <a href="/">← Back</a>
+  </div>
+</body>
+</html>
