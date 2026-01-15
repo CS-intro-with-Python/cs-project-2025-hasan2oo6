@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t cf-contest .
+
+      - name: Run container
+        run: |
+          docker run -d --name cfapp -p 8000:8000 cf-contest
+          sleep 3
+
+      - name: Check routes from outside container
+        run: |
+          python -m pip install requests
+          BASE_URL=http://127.0.0.1:8000 python client/check_routes.py
+
+      - name: Logs (if failed)
+        if: failure()
+        run: docker logs cfapp
+
+      - name: Stop container
+        if: always()
+        run: docker rm -f cfapp
