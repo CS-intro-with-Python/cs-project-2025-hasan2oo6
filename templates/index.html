@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>CF Virtual Contest Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 10px; margin: 10px 0; }
+    input, select { padding: 6px; margin: 4px 0; width: 420px; }
+    textarea { width: 420px; padding: 6px; }
+    button { padding: 8px 14px; }
+    .small { color: #555; font-size: 14px; line-height: 1.4; }
+    .box-error { border: 1px solid #f99; background: #fee; padding: 10px; border-radius: 10px; margin: 10px 0; }
+    .box-warn  { border: 1px solid #fd7; background: #fff6d6; padding: 10px; border-radius: 10px; margin: 10px 0; }
+    code { background:#f3f3f3; padding:2px 4px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <h2>CF Virtual Contest Generator </h2>
+
+  {% if errors and errors|length > 0 %}
+    <div class="box-error">
+      <b>Errors:</b>
+      <ul>{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+    </div>
+  {% endif %}
+
+  {% if warnings and warnings|length > 0 %}
+    <div class="box-warn">
+      <b>Warnings:</b>
+      <ul>{% for w in warnings %}<li>{{ w }}</li>{% endfor %}</ul>
+    </div>
+  {% endif %}
+
+  <div class="card">
+    <form action="/create" method="post">
+      <div><b>Handles</b> (comma/space/newline separated)</div>
+      <textarea name="handles" rows="3"></textarea>
+
+      <hr/>
+
+      <div><b>Groups mode (optional)</b></div>
+      <div class="small">
+        One group per line: <code>k min_rating max_rating tag_mode tags...</code><br/>
+        Use <code>-</code> for no tags.<br/><br/>
+        Example:<br/>
+        <code>2 800 1100 any implementation</code><br/>
+        <code>3 1200 1400 any dp</code><br/>
+        <code>1 1600 1800 any -</code>
+      </div>
+      <textarea name="groups" rows="6" placeholder="(optional) groups..."></textarea>
+
+      <hr/>
+
+      <div><b>Simple mode</b> (used if Groups is empty)</div>
+      <div>
+        <b>Number of problems</b><br/>
+        <input type="number" name="num_problems" value="7" min="1" max="20"/>
+      </div>
+
+      <div>
+        <b>Rating range</b><br/>
+        <input type="number" name="min_rating" value="800" min="0" max="4000"/>
+        <input type="number" name="max_rating" value="1700" min="0" max="4000"/>
+      </div>
+
+      <div>
+        <b>Tags</b> (example: dp graphs math)<br/>
+        <input type="text" name="tags" placeholder="dp graphs"/>
+      </div>
+
+      <div>
+        <b>Tag mode</b><br/>
+        <select name="tag_mode">
+          <option value="any">any</option>
+          <option value="all">all</option>
+        </select>
+      </div>
+
+      <div>
+        <b>Duration (minutes)</b><br/>
+        <input type="number" name="duration_minutes" value="120" min="10" max="600"/>
+      </div>
+
+      <button type="submit">Create contest</button>
+    </form>
+  </div>
+
+  <h3>Recent contests</h3>
+  {% for c in contests %}
+    <div class="card">
+      <div><b>Contest #{{c.id}}</b></div>
+      <div class="small">Handles: {{ ", ".join(c.handles) }}</div>
+      <div class="small">Started: {{ "YES" if c.start_time else "NO" }}</div>
+      <div style="margin-top:8px;"><a href="/contest/{{c.id}}">Open</a></div>
+    </div>
+  {% endfor %}
+</body>
+</html>
