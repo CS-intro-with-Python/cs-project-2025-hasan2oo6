@@ -68,9 +68,18 @@ Works for one user or multiple users (team practice).
 Specify which branch will store the latest stable version of the application
 
 ## Success Criteria
+The project is considered successful if the application runs correctly both locally and inside Docker without errors.
 
-Describe the criteria by which the success of the project can be determined
-(this will be updated in the future)
+Users must be able to create practice contests and receive valid Codeforces problem sets based on the selected difficulty and tags.
+
+Previously solved problems should be correctly excluded for all users.
+
+Contest standings should be generated and updated using real submission data from Codeforces.
+
+The GitHub Actions CI pipeline must pass successfully, confirming that the application builds and runs as expected.
+
+The deployed application on Railway should be accessible and working correctly.
+
 
 * Criteria 1
 
