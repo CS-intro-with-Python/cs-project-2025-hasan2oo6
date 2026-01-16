@@ -44,4 +44,4 @@ Describe the criteria by which the success of the project can be determined
 
 * Criteria 1
 
-https://cs-project-2025-hasan2oo6-production.up.railway.app/
+https://cs-project-2025-hasan2oo6-production-74aa.up.railway.app/
