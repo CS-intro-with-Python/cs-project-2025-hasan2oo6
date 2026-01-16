@@ -21,6 +21,18 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python app.py
 ```
+### Open in browser:
+```bash
+http://127.0.0.1:8000
+```
+
+### Run with Docker
+```bash
+docker build -t cf-contest .
+docker run --rm -p 8000:8000 cf-contest
+```
+
+
 ## Requirements
 
 Describe technologies, libraries, languages you are using (this can be updated in the future).
