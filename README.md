@@ -1,9 +1,16 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/DESIFpxz)
-# CS_2024_project
+# Codeforces Practice Contest Generator
 
 ## Description
 
-This project is a Python tool that automatically generates a custom Codeforces-style contest for any group of users. It collects each participant’s solved problems using the Codeforces API, filters out tasks they have already completed, and then selects new unsolved problems based on chosen tags and rating ranges. The program ensures all selected tasks are fresh, relevant, and personalized to the users’ skill levels, making it useful for practice groups, teams, and competitive programming training.
+This project is a web application that helps users create **custom practice contests** using Codeforces problems.
+
+The application connects to the **Codeforces API** and checks which problems each user has already solved. It then filters out solved problems and selects **new unsolved problems** based on the chosen difficulty (rating range) and problem topics (tags). This saves time and makes practice more focused and effective.
+
+Multiple users can join the same contest for **group practice**. All participants solve the same set of problems, and the application can display a **standings table** based on real Codeforces submission data.
+
+The project is built with **Flask**, uses a **database** to store contest data, runs inside **Docker**, includes **CI/CD with GitHub Actions**, and is deployed online using **Railway**.
+
 
 ## Setup
 
