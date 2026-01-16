@@ -14,12 +14,12 @@ The project is built with **Flask**, uses a **database** to store contest data, 
 
 ## Setup
 
-Describe the steps to set up the environment and run the application. This can be a bash script or docker commands.
-
-```
-Your commands
-
-```
+### Run locally (Python)
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
 
 ## Requirements
 
