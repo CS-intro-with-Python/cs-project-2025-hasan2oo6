@@ -10,6 +10,7 @@ The application connects to the **Codeforces API** and checks which problems eac
 Multiple users can join the same contest for **group practice**. All participants solve the same set of problems, and the application can display a **standings table** based on real Codeforces submission data.
 
 The project is built with **Flask**, uses a **database** to store contest data, runs inside **Docker**, includes **CI/CD with GitHub Actions**, and is deployed online using **Railway**.
+Creating practice contests for students who are training for competitive programming or exams usually requires manually checking which problems they have already solved. This process is time-consuming and error-prone, especially for groups of students. This project solves that problem by automatically checking solved problems using the Codeforces API and selecting only new unsolved tasks. As a result, teachers, coaches, and students can quickly create fair and useful practice contests without manual work.
 
 
 ## Setup
@@ -49,19 +50,25 @@ The project is deployed online using **Railway**.
 
 
 ## Features
+Automatically generates Codeforces-style practice contests
 
-Describe the main features the application performs.
-Filters out previously solved tasks and selects only unsolved ones.
+Uses Codeforces API to check solved problems for each user
 
-Allows choosing problem tags (e.g., dp, graphs, math) for targeted practice.
+Filters out solved problems and selects only unsolved ones
 
-Supports rating-range filtering (e.g., 1200–1700).
+Filters problems by rating range (difficulty)
 
-Randomly generates a contest of any desired size (e.g., 5–10 problems).
+Filters problems by tags (topics like dp, graphs, math)
 
-Produces direct links to all selected Codeforces problems.
+Supports multiple users in one contest (group practice)
 
-Works for one user or multiple users (team practice).
+Displays contest standings using Codeforces submissions
+
+Provides direct links to all selected Codeforces problems
+
+Useful for competitive programming training and exam preparation
+
+Saves time compared to manual problem selection
 
 ## Git
 
