@@ -35,7 +35,18 @@ docker run --rm -p 8000:8000 cf-contest
 
 ## Requirements
 
-Describe technologies, libraries, languages you are using (this can be updated in the future).
+The project is developed using **Python** as the main programming language.  
+The web server is built with the **Flask** framework.  
+The **requests** library is used to communicate with the Codeforces API.  
+**Jinja2** is used for rendering HTML templates.  
+An **SQLite** database is used to store contest and application data.  
+The application is containerized using **Docker**.  
+**GitHub Actions** is used for CI/CD to automatically build and test the project.  
+The project is deployed online using **Railway**.
+
+
+
+
 
 ## Features
 
