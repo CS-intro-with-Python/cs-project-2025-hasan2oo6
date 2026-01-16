@@ -81,6 +81,5 @@ The GitHub Actions CI pipeline must pass successfully, confirming that the appli
 The deployed application on Railway should be accessible and working correctly.
 
 
-* Criteria 1
-
+## Deployed Application
 https://cs-project-2025-hasan2oo6-production-74aa.up.railway.app/
